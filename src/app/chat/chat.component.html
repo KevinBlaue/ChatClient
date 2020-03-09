@@ -16,12 +16,12 @@
                     <p style="text-align: right" *ngIf="message.from.id === user.socketId">
                         <span style="color: darkred">Du:</span>
                         {{message.content}}
-                        <span style="color: #1976d2">{{message.tstamp}}</span>
+                        <span style="color: #1976d2">{{message.timestamp}}</span>
                     </p>
                     <p style="text-align: left" *ngIf="message.from.id !== user.socketId">
                         <span style="color: darkred">{{message.from.name}}:</span>
                         {{message.content}}
-                        <span style="color: #1976d2">{{message.tstamp}}</span>
+                        <span style="color: #1976d2">{{message.timestamp}}</span>
                     </p>
 
                 </div>

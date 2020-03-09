@@ -44,7 +44,7 @@ export class ChatComponent implements OnInit {
       return e.id;
     }).indexOf(this.user.socketId);
     msg.from = this.users[index];
-    msg.tstamp = Date.now();
+    msg.timestamp = Date.now();
     this.service.send(SocketMessageEnum.MESSAGE, msg, this.selected);
     this.messages.push(msg);
     this.message = null;
