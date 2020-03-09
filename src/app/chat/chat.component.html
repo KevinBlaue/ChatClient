@@ -1,0 +1,58 @@
+<div *ngIf="!exists">
+    Start new Session
+    <input [(ngModel)]="username">
+    <button (click)="createUser()">Send</button>
+</div>
+<h4 *ngIf="exists">Hello {{username}}!</h4>
+
+<div class="chatbox" *ngIf="exists">
+
+    <div class="row">
+        <div class="col-md-8">
+            <mat-label>Received Messages:</mat-label>
+            <cdk-virtual-scroll-viewport itemSize="50" class="viewport-messages">
+                <div *ngFor="let message of messages" class="example-item">
+
+                    <p style="text-align: right" *ngIf="message.from.id === user.socketId">
+                        <span style="color: darkred">Du:</span>
+                        {{message.content}}
+                        <span style="color: #1976d2">{{message.tstamp}}</span>
+                    </p>
+                    <p style="text-align: left" *ngIf="message.from.id !== user.socketId">
+                        <span style="color: darkred">{{message.from.name}}:</span>
+                        {{message.content}}
+                        <span style="color: #1976d2">{{message.tstamp}}</span>
+                    </p>
+
+                </div>
+            </cdk-virtual-scroll-viewport>
+        </div>
+
+        <div class="col-md-4">
+            <mat-form-field>
+                <mat-label>Users:</mat-label>
+                <mat-select [(ngModel)]="selected">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let user of users" value="{{user.id}}">
+                        {{user.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            Message
+            <input [(ngModel)]="message" (keyup)="$event.keyCode == 13 && sendMessage()"/>
+            <button (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+
+</div>
+
+<pre>{{messages | json}}</pre>
+<pre>{{users | json}}</pre>
+
+
+

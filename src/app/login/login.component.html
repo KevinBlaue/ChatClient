@@ -1,0 +1,30 @@
+
+
+<mat-card>
+    <div *ngIf="infoState" class="alert alert-warning" role="alert">
+        {{infoState}}
+    </div>
+    <mat-card-header>
+        <mat-card-title>
+            <h1>Login</h1>
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <form #loginform="ngForm">
+            <mat-form-field>
+                <input matInput #username="ngModel" [(ngModel)]="model.username" name="username" placeholder="Username"
+                type="text" required>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput #passwort="ngModel" [(ngModel)]="model.passwort" name="passwort" placeholder="Passwort"
+                type="password" required>
+            </mat-form-field>
+
+            <mat-card-actions>
+                <button mat-raised-button (click)="login()" [disabled]="!loginform.valid" color="primary">Verbinden</button>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
+</mat-card>
